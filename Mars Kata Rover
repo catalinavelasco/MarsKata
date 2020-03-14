@@ -1,0 +1,93 @@
+// Rover Object Goes Here
+// ======================
+let rover = {direction: 'N',
+            x: 0,
+            y: 0,
+            travelLog: [{x: 0, y: 0,}]
+            }
+// ======================
+function turnLeft(rover){
+  console.log("turnLeft was called!");
+  switch (rover.direction){
+    case 'N': rover.direction = 'W'
+      break;
+    case 'W': rover.direction = 'S'
+      break;
+    case 'S': rover.direction = 'E'
+      break;
+    case 'E': rover.direction = 'N'
+  }
+  console.log('Rover is now facing ' + rover.direction);
+}
+
+function turnRight(rover){
+   console.log("turnRight was called!");
+   switch (rover.direction){
+    case 'N': rover.direction = 'E'
+      break;
+    case 'E': rover.direction = 'S'
+      break;
+    case 'S': rover.direction = 'W'
+      break;
+    case 'W': rover.direction = 'N'
+  }
+  console.log('Rover is now facing ' + rover.direction);
+}
+
+function moveForward(rover){
+  console.log("moveForward was called")
+  switch (rover.direction) {
+    case 'N': rover.y = rover.y - 1 
+      break;
+    case 'W': rover.x = rover.x - 1 
+      break;
+    case 'S': rover.y = rover.y + 1 
+      break;
+    case 'E': rover.x = rover.x + 1 
+      break;  
+  }   
+  
+  function moveBackward(rover){
+    console.log("moveBorward was called")
+  switch (rover.direction) {
+  case 'N': rover.y = rover.y + 1
+    break;
+  case 'W': rover.x = rover.x + 1
+    break;
+  case 'S': rover.y = rover.y - 1
+    break;
+  case 'E': rover.x = rover.x - 1
+    break;
+}
+  }
+  console.log('(' + rover.x + '),(' + rover.y + ')')
+
+
+  let addingPosition = {x: rover.x, y: rover.y}
+ rover.travelLog.push(addingPosition) //adds new items to the end of an array, and returns the new length
+
+}
+
+
+function command(command){
+      for (let i = 0; i < command.length; i++){
+    switch(command[i]){
+      case "r": turnRight(rover)
+        break;
+      case "l": turnLeft(rover)
+        break;  
+        case "b": moveBackward(rover)
+        break;  
+      case 'f': moveForward(rover)
+        break;}
+  }
+}
+
+//Testing the rover commands
+command("rffrfflfrff");
+
+//Create a property on the rover object that contains the coordinates of the places where it has been. 
+//This property will be an array and you can call it travelLog.
+for (let i=0; i < rover.travelLog.length; i++){
+  console.log('travelLog' + (i) + '=      x= ' + rover.travelLog[i].x + ', y=' + rover.travelLog[i].y)
+}
